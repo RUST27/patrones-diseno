@@ -1,3 +1,4 @@
+import { COLORS } from '../helpers/colors';
 /**
  * ! Patrón Builder:
  * Es un patrón de diseño creacional que nos permite construir objetos complejos
@@ -12,3 +13,67 @@
  *
  * https://refactoring.guru/es/design-patterns/builder
  */
+
+class Computer {
+    public cpu: string = 'cpu not defined';
+    public ram: string = 'ram not defined';
+    public storage: string = 'storage not defined';
+    public gpu?: string = 'gpu not defined';
+
+    displayConfiguration(): void {
+        console.log(`CPU: ${this.cpu}`
+            + `\nRAM: ${this.ram}`
+            + `\nStorage: ${this.storage}`
+            + `\nGPU: ${this.gpu}`);
+        ;
+    }
+}
+
+class ComputerBuilder {
+
+    private computer: Computer;
+
+    constructor(){
+        this.computer = new Computer();
+    }
+
+    setCPU(cpu: string): ComputerBuilder {
+        this.computer.cpu = cpu;
+
+        return this;
+    }
+
+    setRAM(ram: string): ComputerBuilder {
+        this.computer.ram = ram;
+
+        return this;
+    }
+
+    setStorage(storage: string): ComputerBuilder {
+        this.computer.storage = storage;
+
+        return this;
+    }
+
+    setGPU(gpu: string): ComputerBuilder {
+        this.computer.gpu = gpu;
+
+        return this;
+    }
+
+    build(): Computer {
+        return this.computer;
+    }
+}
+
+function main() {
+
+    const basicComputer = new ComputerBuilder().setCPU('i3').setRAM('4GB')
+        .setStorage('1TB').build();
+
+    console.log('Basic Computer:', COLORS.green);
+    basicComputer.displayConfiguration();
+
+}
+
+main();

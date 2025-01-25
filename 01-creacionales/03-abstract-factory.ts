@@ -74,3 +74,17 @@ class MenuResFactory implements MenuFactory {
         return new Refresco();
     }
 }
+
+function main(factory: MenuFactory) {
+    const hamburguer = factory.createHamburguesa();
+    const drink = factory.createBebida();
+
+    hamburguer.preparar();
+    drink.servir();
+}
+
+console.log('Menu Pollo');
+main(new MenuPolloFactory());
+
+//console.log('Menu Res');
+//main(new MenuResFactory());

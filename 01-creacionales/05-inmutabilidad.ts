@@ -49,6 +49,15 @@ class CodeEditorHistory {
         this.CurrentIndex++;
     }
 
+    undo(): CodeEditorState | null{
+        if(this.CurrentIndex > 0){
+            this.CurrentIndex--;
+            return this.History[this.CurrentIndex];
+        }
+
+        return null;
+    }
+
     redo(): CodeEditorState | null{
         if(this.CurrentIndex < this.History.length - 1){
             this.CurrentIndex++;
@@ -58,5 +67,23 @@ class CodeEditorHistory {
         return null;
     }
 }
+
+function main(){    
+    const history = new CodeEditorHistory();
+    let editorState = new CodeEditorState("console.log('Hola Mundo');", 2, false);
+
+    history.saveState(editorState);
+
+    console.log('Estado actual');
+    editorState.displayState();
+
+    editorState = editorState.copyWith({content:"console.log('hola mundo 2')",cursorPosition: 10, unsaveChanges: true});
+    history.saveState(editorState);
+
+    console.log('Estado actual');
+    editorState.displayState();
+}
+
+main();
 
 

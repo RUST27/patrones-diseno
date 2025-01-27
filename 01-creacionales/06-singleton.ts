@@ -24,7 +24,7 @@ class DragonBalls{
     public static getInstance(): DragonBalls{
         if(!DragonBalls.instance){
             DragonBalls.instance = new DragonBalls();
-            console.log('Se creó una instancia de DragonBalls', COLORS.green);
+            console.log('Se creó una instancia de DragonBalls');
         }
         return DragonBalls.instance;
     }
@@ -32,22 +32,40 @@ class DragonBalls{
     collectBall(): void{
         if(this.ballsCollected < 7){
             this.ballsCollected++;
-            console.log(`Se ha recolectado una esfera del dragón. Total: ${this.ballsCollected}`, COLORS.yellow); 
+            console.log(`Se ha recolectado una esfera del dragón. Total: ${this.ballsCollected}`); 
             return;  
     }
 
-    console.log('Ya se han recolectado las 7 esferas del dragón', COLORS.red);
+    console.log('Ya se han recolectado las 7 esferas del dragón');
 
     }
 
     summonDragon(): void{
         if(this.ballsCollected === 7){
-            console.log('Se ha invocado al dragón Shenlong', COLORS.blue);
+            console.log('Se ha invocado al dragón Shenlong');
             this.ballsCollected = 0;
             return;
         }
 
-        console.log('No se pueden invocar al dragón, faltan esferas', COLORS.red);
+        console.log('No se pueden invocar al dragón, faltan esferas');
     }
 
 }
+
+function main(){
+
+const gokuDragonBalls = DragonBalls.getInstance();
+
+gokuDragonBalls.collectBall();
+gokuDragonBalls.collectBall();
+gokuDragonBalls.collectBall();
+gokuDragonBalls.collectBall();
+
+const vegetaDragonBalls = DragonBalls.getInstance();
+
+vegetaDragonBalls.collectBall();
+
+gokuDragonBalls.summonDragon();
+}
+
+main();

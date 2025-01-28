@@ -1,8 +1,33 @@
-import { Logger } from '@deno-library/logger';
+import { Logger } from 'jsr:@deno-library/logger';
 
 // TODO: Implementar el LoggerAdapter
-const logger = new Logger();
+interface  ILoggerAdapter {
+    file: string;
 
-logger.info('Este es un mensaje de prueba');
-logger.error('Este es un error de prueba');
-logger.warn('Este es un mensaje de advertencia');
+    writeLog(message: string): void;
+
+    writeError(message: string): void;
+
+    writeWarn(message: string): void;
+}
+
+export class LoggerAdapter implements ILoggerAdapter {
+    file: string;
+    private logger = new Logger();
+
+    constructor(file: string) {
+        this.file = file;
+    }
+
+    writeLog(message: string): void {
+        this.logger.log(this.file, message);
+    }
+
+    writeError(message: string): void {
+        this.logger.error(this.file, message);  
+    }
+
+    writeWarn(message: string): void {
+        this.logger.warn(this.file, message);
+    }
+}

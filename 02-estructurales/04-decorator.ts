@@ -60,15 +60,3 @@ class SMSDecorator extends NotificationDecorator{
     }
 }
 
-function main(){
-
-    let notification: Notificacion = new BasicNotification();
-
-    notification = new EmailDecorator(notification);
-    notification = new SMSDecorator(notification);
-
-    notification.send('Mensaje de prueba');
-
-}
-
-main();

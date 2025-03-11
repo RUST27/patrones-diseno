@@ -23,9 +23,34 @@ class Pokemon{
         this.name = name
         this.type = type
     }
-
-
 }
+
+class PokemonCollection {
+    private pokemons: Pokemon[] = [];
+
+    addPokemon(pokemon: Pokemon){
+        this.pokemons.push(pokemon)
+    }
+
+    getPokemonAt(index: number): Pokemon | null {
+        if(index < 0 || index >= this.pokemons.length){
+            return null
+        }
+        return this.pokemons[index]
+    }
+
+    getLength(): number {
+        return this.pokemons.length
+    }
+
+    // TODO:
+    createIteator(): Iterator<Pokemon> {
+        throw new Error('Method not implemented')
+    }
+}
+
+
+
 
 
 
